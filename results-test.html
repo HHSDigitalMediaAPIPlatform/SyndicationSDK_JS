@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>FOR TESTING SYNDICATION SDK</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		
+	</head>
+
+	<body>
+		<img id='testImg' src="" />
+		<div id="addContent"></div>
+	</body>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+	<script src="syndication-sdk.js"></script>
+	<script type="text/javascript">
+/*		Syndication.getMediaById(2, function(data){
+			console.log("=================> getMediaById");
+			console.log(data);
+		});
+
+		Syndication.getMediaAlternateImagesById(2, function(data){
+			console.log("=================> getMediaAlternateImageById");
+			console.log(data);
+		});
+
+		Syndication.getMediaContentById(2, function(data){
+			console.log("=================> getMediaContentById");
+			console.log(data);
+		});*/
+		
+		Syndication.getMediaHtmlById(1, function(data){
+			var rawHtml = data.results[0].content;
+			console.log("=================> getMediaHtml");
+			console.log(data);		
+			$('#addContent').html(rawHtml);	
+		}, {
+			'imageFloat': 'left'
+		});
+
+/*		Syndication.getMedia(function(data){
+			syndicatedContent = data;
+			console.log("=================> getMedia");
+			console.log(syndicatedContent);
+			pagination = Syndication.addPagination();
+			currentPageNumber = pagination.pageNum;
+			totalPages = pagination.totalPages;
+			
+		}, {
+		 
+		 offset: 0,
+		 max: 18
+
+		});*/
+		
+/*		var myPreview = Syndication.getMediaPreviewById(1, {
+			imageFloat: 'right',
+			previewSize: 'custom'
+		});	*/
+		//console.log(myPreview);
+		//$('#testImg').attr('src', myPreview);
+		
+/*		Syndication.getMediaEmbedById(1, function(data){
+			console.log(data);
+		}, {
+			height: 480,
+			width: 640
+		});*/
+
+
+
+	</script>
+	<!--<script language='javascript' type='text/javascript' src='http://ctacdev.com:8090/Syndication/api/v2/resources/media/1/javascriptContent?height=480&width=640'></script>-->
+</html>

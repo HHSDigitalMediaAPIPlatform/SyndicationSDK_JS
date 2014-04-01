@@ -16,36 +16,50 @@
 	<body>
 		<img id='testImg' src="" />
 		<div id="addContent"></div>
+		<div id="syndicatedContent"></div>
 	</body>
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 	<script src="syndication-sdk.js"></script>
 	<script type="text/javascript">
-/*		Syndication.getMediaById(2, function(data){
-			console.log("=================> getMediaById");
-			console.log(data);
-		});
 
-		Syndication.getMediaAlternateImagesById(2, function(data){
-			console.log("=================> getMediaAlternateImageById");
-			console.log(data);
-		});
+	/* ================== CAMPAIGNS ================== */
+		/* 1 */
+/*		Syndication.getCampaigns(function(data){
+			console.log(data.results);
+		},{
+			max: 5,
+			offset: 5
+		});*/	
+		/* 2 */
+/*		Syndication.getCampaignsById(1, function(data){
+			console.log(data.results);
+		});*/		
 
-		Syndication.getMediaContentById(2, function(data){
-			console.log("=================> getMediaContentById");
+		/* 3 */
+/*		Syndication.getMediaByCampaignId(1, function(data){
 			console.log(data);
+		},{
+			max: 2,
+			offset: 1
 		});*/
-		
-		Syndication.getMediaHtmlById(1, function(data){
-			var rawHtml = data.results[0].content;
-			console.log("=================> getMediaHtml");
-			console.log(data);		
-			$('#addContent').html(rawHtml);	
-		}, {
-			'imageFloat': 'left'
-		});
 
+	/* LANGUAGES */
+		/* 4 */
+/*		Syndication.getLanguages(function(data){
+			console.log(data.results);
+		},{
+			offset: 1,
+			max: 1
+		});*/
+		/* 5 */
+/*		Syndication.getLanguageById(2, function(data){
+			console.log(data.results);
+		});*/
+
+	/* ================== MEDIA ================== */
+		/* 6 */
 /*		Syndication.getMedia(function(data){
 			syndicatedContent = data;
 			console.log("=================> getMedia");
@@ -56,27 +70,149 @@
 			
 		}, {
 		 
-		 offset: 0,
-		 max: 18
+		 offset: 5,
+		 max: 5
 
 		});*/
-		
-/*		var myPreview = Syndication.getMediaPreviewById(1, {
-			imageFloat: 'right',
-			previewSize: 'custom'
-		});	*/
-		//console.log(myPreview);
-		//$('#testImg').attr('src', myPreview);
-		
-/*		Syndication.getMediaEmbedById(1, function(data){
+
+		/* 7 */
+		Syndication.getMediaSearchResults('oreo', function(data){
+			console.log("=================> getMediaSearchResults");
+			console.log(data.results);
+		});
+
+		/* 8 */
+/*		Syndication.getMediaById(2, function(data){
+			console.log("=================> getMediaById");
 			console.log(data);
-		}, {
-			height: 480,
-			width: 640
 		});*/
 
+		/* 9 */
+/*		Syndication.getMediaAlternateImagesById(2, function(data){
+			console.log("=================> getMediaAlternateImageById");
+			console.log(data);
+		});*/
+
+		/* 10 */
+/*		Syndication.getMediaContentById(2, function(data){
+			console.log("=================> getMediaContentById");
+			console.log(data);
+		});*/
+
+		/* 11 */
+/*		Syndication.getMediaEmbedById(1, function(data){
+			console.log(data.results[0].snippet);
+		});*/
+
+		/* 12 */
+/*		var myPreview = Syndication.getMediaPreviewById(1, {
+			imageFloat: 'left',
+			height: 480,
+			width: 650,
+			previewSize: 'custom'
+		});	
+		console.log("==================> getEmbed\n"+myPreview);
+		$('#testImg').attr('src', myPreview);*/
+
+		/* 13 */
+/*		Syndication.getMediaRatingById(1, function(data){
+			console.log(data);
+		});*/
+
+		/* 14 */ 
+/*		Syndication.getRelatedMediaById(1, function(data){
+			console.log(data.results);
+		},{
+			max: 2,
+			offset: 1
+		});*/
+
+		/* 15 */
+/*		Syndication.getMediaHtmlById(1, function(data){
+			var rawHtml = data.results[0].content;
+			console.log("=================> getMediaHtml");
+			console.log(data);		
+			$('#addContent').html(rawHtml);	
+		}, {
+			imageFloat: 'left',
+			imageMargin: '0,0,0,0'
+		});*/
+
+		/* 16 */
+/*		var thumb = Syndication.getMediaThumbnailById(8);
+		$('#testImg').attr('src', thumb);*/
+
+		/* 17 */
+/*		Syndication.getMediaYoutubeMetaDataById(1, function(data){
+			console.log(data.results[0].data);
+		});*/
+
+		/* ================== MEDIA TYPES ================== */
+		/* 18 */
+/*		Syndication.getMediaTypes(function(data){
+			console.log(data.results);
+		});*/		
+
+		/* ================== RESOURCES ================== */
+		/* 19 */
+
+		/* ================== SOURCES ================== */
+		/* 20 */
+/*		Syndication.getSources(function(data){
+			console.log(data.results);
+		},{
+			offset: 2,
+			max: 2
+		});*/
+
+		/* 21 */
+/*		Syndication.getSourcesById(5, function(data){
+			console.log(data.results);
+		});*/
+
+		/* ================== TAGS  ================== */
+		/* 22 */
+/*		Syndication.getTagTypes(function(data){
+			console.log(data);
+		});*/
+
+		/* 23 */
+/*		Syndication.getTags(function(data){
+			console.log(data.results);	
+		},{
+			offset: 2,
+			max: 10
+		});*/
+
+		/* 24 */
+/*		Syndication.getTagById(1, function(data){
+			console.log(data.results);
+		});*/
+
+		/* 25 */
+/*		Syndication.getMediaByTagId(1, function(data){
+			console.log(data.results);
+		});*/
+
+		/* 26 */
+/*		Syndication.getRelatedTagsById(1, function(data){
+			console.log(data.results);
+		});*/
 
 
 	</script>
-	<!--<script language='javascript' type='text/javascript' src='http://ctacdev.com:8090/Syndication/api/v2/resources/media/1/javascriptContent?height=480&width=640'></script>-->
+<!--	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(
+			function(){
+				$.ajax({
+					url: 'http://ctacdev.com:8090/Syndication/api/v2/resources/media/1/syndicate.json?',
+					type: "GET",
+					dataType: 'jsonp',
+					success: function(data){
+						$('#syndicatedContent').html(data.results[0].content);
+					}
+				});
+			});	
+	</script>-->
 </html>

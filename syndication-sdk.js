@@ -2,40 +2,77 @@ var Syndication = (function(){
 	
 	var _dataUrl = "http://ctacdev.com:8090/Syndication/api/v2";
 	var _thisObj = this; // Variable to map the 'Syndication' objects 'this'.
-	
-	/* Methods Paramers Objects */
-	/* Objects used for methods */
-	var getMediaParams = {
-		max: 18,
-		offset: 0
-	};
-
-	var getMediaEmbedParams = {
-		name: 'Syndicated Content'
-	}
-
-	var getMediaPreviewParams = {
-
-	}
-
-	var maxRecords = 18;
 	var pagination;
 
-	apiCall = function( urlString, funcCallback, paramsObj) {
-		$.getJSON(urlString, paramsObj, function(data){
-			//console.log(data);
-			if(data.meta !== undefined){
-				pagination = data.meta.pagination;	
-			}
-			
-			funcCallback(data);
+	apiCall = function( urlString, funcCallback, paramsObj){//console.log(urlString);
+
+		$.ajax({
+		    url: urlString,
+		    type: "GET",
+		    data: paramsObj,
+		    dataType: 'json',
+		    contentType: 'application/json; charset=utf-8',
+		    success: function(data){
+				//console.log(data);
+				if(data.meta !== undefined){
+					pagination = data.meta.pagination;	
+				}
+				
+				funcCallback(data);				
+		    },
+		    error: function(xhr, status, error){
+		    	console.log('=======> ' + xhr.responseText);
+		    }
 		});
+/*			$.getJSON(urlString, paramsObj, function(data){
+				//console.log(data);
+				if(data.meta !== undefined){
+					pagination = data.meta.pagination;	
+				}
+				
+				funcCallback(data);
+			});		*/	
+
 	}
 
 	return {
 
 		addPagination : function(){
 			return pagination;
+		},
+
+		/**/
+		getCampaigns: function(callback, options){
+			var params;
+			options === undefined ? params = {} : params = $.param(options);
+
+			_thisObj.apiCall(_dataUrl + '/resources/campaigns.json?callback=?', function(data){
+				callback(data);
+			}, params);
+		},
+
+		/**/
+		getCampaignsById: function(id, callback){
+			_thisObj.apiCall(_dataUrl + '/resources/campaigns/'+ id.toString() +'.json?callback=?', function(data){
+				callback(data);	
+			});
+		},
+
+		/**/
+		getLanguages: function(callback, options){
+			var params;
+			options === undefined ? params = {} : params = $.param(options);
+
+			_thisObj.apiCall(_dataUrl + '/resources/languages.json?callback=?', function(data){
+				callback(data);
+			}, params);
+		},
+
+		/**/
+		getLanguageById: function(id, callback){
+			_thisObj.apiCall(_dataUrl + '/resources/languages/'+ id.toString() +'.json?callback=?', function(data){
+				callback(data);
+			});
 		},
 
 		/*
@@ -94,28 +131,47 @@ var Syndication = (function(){
 		/*GET API media.json CALL*/ 
 		// Was 'getAllMediaTypes' no is 'getMedia'
 		getMedia : function(callback, options) {
-
-	        var getMediaOptions = $.extend( {}, getMediaParams, options );
-
+			var params;
+			options === undefined ? params = {} : params = $.param(options);
 			
 			var results = _thisObj.apiCall(_dataUrl + '/resources/media.json?callback=?', function(data){
-				callback(data.results);
-			}, getMediaOptions);
+				callback(data);
+			}, params);
 
 		},
 
 		/*GET API {id}/alternateImages.json CALL*/
 		getMediaAlternateImagesById: function(id, callback){
 			_thisObj.apiCall(_dataUrl + '/resources/media/'+id.toString()+'/alternateImages.json?callback=?', function(data){
-				callback(data.results);
+				callback(data);
 			});
+		},
+
+		/**/
+		getMediaByCampaignId: function(id, callback, options){
+			var params;
+			options === undefined ? params = {} : params = $.param(options);
+
+			_thisObj.apiCall(_dataUrl + '/resources/campaigns/'+ id.toString() +'/media.json?callback=?', function(data){
+				callback(data);	
+			}, params );
 		},
 
 		/*GET API media/{id}.json CALL*/
 		getMediaById: function(id, callback){
 			_thisObj.apiCall(_dataUrl + '/resources/media/'+id.toString()+'.json?callback=?', function(data){
-				callback(data.results);
+				callback(data);
 			});
+		},
+
+		/**/
+		getMediaByTagId:function(id, callback, options){
+			var params;
+			options === undefined ? params = {} : params = $.param(options);
+
+			_thisObj.apiCall(_dataUrl + '/resources/tags/'+ id.toString() +'/media.json?callback=?', function(data){
+				callback(data);
+			}, params);
 		},
 
 		/*GET API media/{id}/content CALL*/
@@ -127,68 +183,135 @@ var Syndication = (function(){
 
 		/**/
 		getMediaEmbedById: function(id, callback, options){
-
-			var getMediaEmbedOptions = $.extend( {}, getMediaEmbedParams, options );
-			console.log("====> "+_dataUrl + '/resources/media/'+id.toString()+'/embed.html?callback=?');
-			var results = _thisObj.apiCall(_dataUrl + '/resources/media/'+id.toString()+'/embed.html?callback=?', function(data){
+			var params;
+			options === undefined ? params = {} : params = $.param(options);			
+			
+			_thisObj.apiCall(_dataUrl + '/resources/media/'+id.toString()+'/embed.json?callback=?', function(data){
 				callback(data);
-			}, getMediaEmbedOptions);
+			},params);			
 		},
 
 		/**/
 		getMediaHtmlById : function(id, callback, options) {
-			var getMediaHtmlOptions = $.extend( {}, options );
+			var params;
+			options === undefined ? params = {} : params = $.param(options);
 
 			var results = _thisObj.apiCall(_dataUrl + '/resources/media/'+id.toString()+'/syndicate.json?callback=?', function(data){
 				callback(data);
-			}, getMediaHtmlOptions);
+			}, params);
 		},
 
 		/*GET API {id}/preview.json CALL*/
 		getMediaPreviewById : function(id, options) {
-			var getMediaPreviewOptions = $.extend( {}, getMediaPreviewParams, options );
-			console.log(getMediaPreviewOptions.imageFloat);
-			var append;
-			return _dataUrl + '/resources/media/' + id.toString() + '/preview.jpg?'+getMediaPreviewOptions;
-			//previewSize=custom&width=570&height=400&crop=true';
+			var params;
+			options === undefined ? params = {} : params = $.param(options);
+			
+			return _dataUrl + '/resources/media/' + id.toString() + '/preview.jpg?' + params;                                                                                                                                                                   
 		},
 
-		searchMediaMetadata : function(searchfield, callback) {
-			if(searchfield.val() === "") {
-				searchfield.val('Enter Search Term Here...');
-				return 
-			};
-			var searchField = searchfield.val();
-			var syndicatedSearchArray = [];
-			var syndicatedSearchIdsArray = [];
-			var searchQuery = _thisObj.apiCall(_dataUrl + '/resources.json?q=' + escape(searchField) + '&callback=?', function(data){
-				
-				syndicatedSearchArray = data.results[0];
-
-				$.each(syndicatedSearchArray, function(index, element){
-					
-					for(var i = 0, totalItems = element.items.length; totalItems > i; i++  ) {
-						syndicatedSearchIdsArray.push(element.items[i].id);
-					}
-
-				});
-
-				_thisObj.apiCall(_dataUrl + '/resources/media.json?restrictToSet=' + syndicatedSearchIdsArray.join() + '&callback=?', function(data){
-					callback(data.results);
-				});
-
+		/**/
+		getMediaRatingById: function(id, callback){
+			_thisObj.apiCall(_dataUrl + '/resources/media/'+ id.toString() +'/ratings.json?callback=?', function(data){
+				callback(data);
 			});
-			
+		},
+		
+		/**/
+		getMediaSearchResults: function(searchfield, callback){
+			_thisObj.apiCall(_dataUrl + '/resources/media/searchResults.json?q=' + searchfield + '&callback=?', function(data){
+				callback(data);
+			});
+		},
+
+		/**/
+		getMediaThumbnailById: function(id){
+			return _dataUrl + '/resources/media/'+ id.toString() +'/thumbnail.jpg';
+		},
+
+		/**/
+		getMediaTypes: function(callback){
+			_thisObj.apiCall(_dataUrl + '/resources/mediaTypes.json?callback=?', function(data){
+				callback(data);
+			});
+		},		
+
+		getMediaYoutubeMetaDataById: function(id, callback){
+			_thisObj.apiCall(_dataUrl + '/resources/media/'+ id.toString() +'/youtubeMetaData.json?callback=?',function(data){
+				callback(data);
+			});
 		},
 
 		/* HELPER FUNCTION */
-		getPage : function(url, callback) {
+		getPage: function(url, callback) {
 			
 			_thisObj.apiCall(url, function(data) {
 				callback(data.results);
 			});
 
-		}				
+		},
 
+		getRelatedMediaById: function(id, callback, options){
+			var params;
+			options === undefined ? params = {} : params = $.param(options);
+
+			_thisObj.apiCall(_dataUrl + '/resources/media/'+ id.toString() +'/relatedMedia.json?callback=?', function(data){
+				callback(data);
+			}, params);
+		},
+
+		/**/
+		getRelatedTagsById: function(id, callback, options){
+			var params;
+			options === undefined ? params = {} : params = $.param(options);
+
+			_thisObj.apiCall(_dataUrl + '/resources/tags/'+ id.toString() +'/related.json?callback=?', function(data){
+				callback(data);
+			}, params);
+		},
+
+		getResources: function(string, callback){
+		 	_thisObj.apiCall(_dataUrl + '/resources.json?q=' + string); 
+		},
+
+		/**/
+		getSources: function(callback, options){
+			var params;
+			options === undefined ? params = {} : params = $.param(options);
+
+			_thisObj.apiCall(_dataUrl + '/resources/sources.json?callback=?', function(data){
+				callback(data);
+			}, params);
+		},
+
+		/**/
+		getSourcesById: function(id, callback){
+			_thisObj.apiCall(_dataUrl + '/resources/sources/'+ id.toString() +'.json?callback=?', function(data){
+				callback(data);
+			});
+		},
+
+		/**/
+		getTags: function(callback, options){
+			var params;
+			options === undefined ? params = {} : params = $.param(options);
+
+			_thisObj.apiCall(_dataUrl + '/resources/tags.json?callback=?', function(data){
+				callback(data);
+			}, params);
+		},				
+
+		/**/
+		getTagById: function(id, callback){
+			_thisObj.apiCall(_dataUrl + '/resources/tags/'+ id.toString() +'.json?callback=?', function(data){
+				callback(data);
+			});
+		},
+
+		/**/
+		getTagTypes: function(callback){
+			_thisObj.apiCall(_dataUrl + '/resources/tagTypes.json?callback=?', function(data){
+				callback(data);
+			})
+		},		
 	}
 }());

@@ -60,7 +60,7 @@
 
 	/* ================== MEDIA ================== */
 		/* 6 */
-/*		Syndication.getMedia(function(data){
+		Syndication.getMedia(function(data){
 			syndicatedContent = data;
 			console.log("=================> getMedia");
 			console.log(syndicatedContent);
@@ -73,13 +73,13 @@
 		 offset: 5,
 		 max: 5
 
-		});*/
+		});
 
 		/* 7 */
-		Syndication.getMediaSearchResults('oreo', function(data){
+/*		Syndication.getMediaSearchResults('oreo', function(data){
 			console.log("=================> getMediaSearchResults");
 			console.log(data.results);
-		});
+		});*/
 
 		/* 8 */
 /*		Syndication.getMediaById(2, function(data){
@@ -199,7 +199,9 @@
 			console.log(data.results);
 		});*/
 
-
+/*		Syndication.getPage('http://ctacdev.com:8090/Syndication/api/v2/resources/languages.json?callback=?', function(data){
+			console.log(data);
+		}, {});*/
 	</script>
 <!--	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script>

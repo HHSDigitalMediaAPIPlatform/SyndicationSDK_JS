@@ -1,19 +1,17 @@
-var Syndication = (function(){ 
+function Syndication(url){
+	/* ========== PRIVATE VARIABLES ========== */
+	var _dataUrl;
+	url !== undefined ? _dataUrl = url : _dataUrl = "http://ctacdev.com:8090/Syndication/api/v2";
 	
-	var _dataUrl = "http://ctacdev.com:8090/Syndication/api/v2";
-	var _thisObj = this; // Variable to map the 'Syndication' objects 'this'.
 	var pagination;
-
-	apiCall = function( urlString, funcCallback, paramsObj){//console.log(urlString);
+	var apiCall = function( urlString, funcCallback, paramsObj){//console.log(urlString);
 
 		$.ajax({
 		    url: urlString,
 		    type: "GET",
 		    data: paramsObj,
-		    dataType: 'json',
-		    contentType: 'application/json; charset=utf-8',
+		    dataType: 'jsonp',
 		    success: function(data){
-				//console.log(data);
 				if(data.meta !== undefined){
 					pagination = data.meta.pagination;	
 				}
@@ -21,22 +19,15 @@ var Syndication = (function(){
 				funcCallback(data);				
 		    },
 		    error: function(xhr, status, error){
-		    	console.log('=======> ' + xhr.responseText);
+		    	console.log('=======> e' + xhr.status);
+		    	$('#results').html('<span>'+xhr.status+' error!</span>');
 		    }
-		});
-/*			$.getJSON(urlString, paramsObj, function(data){
-				//console.log(data);
-				if(data.meta !== undefined){
-					pagination = data.meta.pagination;	
-				}
-				
-				funcCallback(data);
-			});		*/	
+		});	
 
 	}
 
 	return {
-
+		/* ========== METHOD LIST START ========== */
 		addPagination : function(){
 			return pagination;
 		},
@@ -46,15 +37,15 @@ var Syndication = (function(){
 			var params;
 			options === undefined ? params = {} : params = $.param(options);
 
-			_thisObj.apiCall(_dataUrl + '/resources/campaigns.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/campaigns.json?callback=?', function(data){
+				callback(data.results);
 			}, params);
 		},
 
 		/**/
 		getCampaignsById: function(id, callback){
-			_thisObj.apiCall(_dataUrl + '/resources/campaigns/'+ id.toString() +'.json?callback=?', function(data){
-				callback(data);	
+			apiCall(_dataUrl + '/resources/campaigns/'+ id.toString() +'.json?callback=?', function(data){
+				callback(data.results);	
 			});
 		},
 
@@ -63,15 +54,15 @@ var Syndication = (function(){
 			var params;
 			options === undefined ? params = {} : params = $.param(options);
 
-			_thisObj.apiCall(_dataUrl + '/resources/languages.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/languages.json?callback=?', function(data){
+				callback(data.results);
 			}, params);
 		},
 
 		/**/
 		getLanguageById: function(id, callback){
-			_thisObj.apiCall(_dataUrl + '/resources/languages/'+ id.toString() +'.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/languages/'+ id.toString() +'.json?callback=?', function(data){
+				callback(data.results);
 			});
 		},
 
@@ -134,16 +125,16 @@ var Syndication = (function(){
 			var params;
 			options === undefined ? params = {} : params = $.param(options);
 			
-			var results = _thisObj.apiCall(_dataUrl + '/resources/media.json?callback=?', function(data){
-				callback(data);
+			var results = apiCall(_dataUrl + '/resources/media.json?callback=?', function(data){
+				callback(data.results);
 			}, params);
 
 		},
 
 		/*GET API {id}/alternateImages.json CALL*/
 		getMediaAlternateImagesById: function(id, callback){
-			_thisObj.apiCall(_dataUrl + '/resources/media/'+id.toString()+'/alternateImages.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/media/'+id.toString()+'/alternateImages.json?callback=?', function(data){
+				callback(data.results);
 			});
 		},
 
@@ -152,15 +143,15 @@ var Syndication = (function(){
 			var params;
 			options === undefined ? params = {} : params = $.param(options);
 
-			_thisObj.apiCall(_dataUrl + '/resources/campaigns/'+ id.toString() +'/media.json?callback=?', function(data){
-				callback(data);	
+			apiCall(_dataUrl + '/resources/campaigns/'+ id.toString() +'/media.json?callback=?', function(data){
+				callback(data.results);	
 			}, params );
 		},
 
 		/*GET API media/{id}.json CALL*/
 		getMediaById: function(id, callback){
-			_thisObj.apiCall(_dataUrl + '/resources/media/'+id.toString()+'.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/media/'+id.toString()+'.json?callback=?', function(data){
+				callback(data.results);
 			});
 		},
 
@@ -169,15 +160,15 @@ var Syndication = (function(){
 			var params;
 			options === undefined ? params = {} : params = $.param(options);
 
-			_thisObj.apiCall(_dataUrl + '/resources/tags/'+ id.toString() +'/media.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/tags/'+ id.toString() +'/media.json?callback=?', function(data){
+				callback(data.results);
 			}, params);
 		},
 
 		/*GET API media/{id}/content CALL*/
 		getMediaContentById: function(id, callback){
-			_thisObj.apiCall(_dataUrl + '/resources/media/'+id.toString()+'/content?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/media/'+id.toString()+'/content?callback=?', function(data){
+				callback(data.content);
 			});
 		},
 
@@ -186,8 +177,8 @@ var Syndication = (function(){
 			var params;
 			options === undefined ? params = {} : params = $.param(options);			
 			
-			_thisObj.apiCall(_dataUrl + '/resources/media/'+id.toString()+'/embed.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/media/'+id.toString()+'/embed.json?callback=?', function(data){
+				callback(data.results);
 			},params);			
 		},
 
@@ -196,8 +187,8 @@ var Syndication = (function(){
 			var params;
 			options === undefined ? params = {} : params = $.param(options);
 
-			var results = _thisObj.apiCall(_dataUrl + '/resources/media/'+id.toString()+'/syndicate.json?callback=?', function(data){
-				callback(data);
+			var results = apiCall(_dataUrl + '/resources/media/'+id.toString()+'/syndicate.json?callback=?', function(data){
+				callback(data.results);
 			}, params);
 		},
 
@@ -211,15 +202,15 @@ var Syndication = (function(){
 
 		/**/
 		getMediaRatingById: function(id, callback){
-			_thisObj.apiCall(_dataUrl + '/resources/media/'+ id.toString() +'/ratings.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/media/'+ id.toString() +'/ratings.json?callback=?', function(data){
+				callback(data.results);
 			});
 		},
 		
 		/**/
 		getMediaSearchResults: function(searchfield, callback){
-			_thisObj.apiCall(_dataUrl + '/resources/media/searchResults.json?q=' + searchfield + '&callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/media/searchResults.json?q=' + searchfield + '&callback=?', function(data){
+				callback(data.results);
 			});
 		},
 
@@ -230,21 +221,31 @@ var Syndication = (function(){
 
 		/**/
 		getMediaTypes: function(callback){
-			_thisObj.apiCall(_dataUrl + '/resources/mediaTypes.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/mediaTypes.json?callback=?', function(data){
+				callback(data.results);
 			});
 		},		
 
 		getMediaYoutubeMetaDataById: function(id, callback){
-			_thisObj.apiCall(_dataUrl + '/resources/media/'+ id.toString() +'/youtubeMetaData.json?callback=?',function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/media/'+ id.toString() +'/youtubeMetaData.json?callback=?',function(data){
+				callback(data.results);
 			});
+		},
+
+		/**/
+		getMostPopularMedia: function(callback, options){
+			var params;
+			options === undefined ? params = {} : params = $.param(options);
+
+			apiCall(_dataUrl + '/resources/media/mostPopularMedia.json?callback=?', function(data){
+				callback(data.results);
+			}, params);
 		},
 
 		/* HELPER FUNCTION */
 		getPage: function(url, callback) {
 			
-			_thisObj.apiCall(url, function(data) {
+			apiCall(url, function(data) {
 				callback(data.results);
 			});
 
@@ -254,8 +255,8 @@ var Syndication = (function(){
 			var params;
 			options === undefined ? params = {} : params = $.param(options);
 
-			_thisObj.apiCall(_dataUrl + '/resources/media/'+ id.toString() +'/relatedMedia.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/media/'+ id.toString() +'/relatedMedia.json?callback=?', function(data){
+				callback(data.results);
 			}, params);
 		},
 
@@ -264,13 +265,15 @@ var Syndication = (function(){
 			var params;
 			options === undefined ? params = {} : params = $.param(options);
 
-			_thisObj.apiCall(_dataUrl + '/resources/tags/'+ id.toString() +'/related.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/tags/'+ id.toString() +'/related.json?callback=?', function(data){
+				callback(data.results);
 			}, params);
 		},
 
-		getResources: function(string, callback){
-		 	_thisObj.apiCall(_dataUrl + '/resources.json?q=' + string); 
+		getResources: function(string, callback){console.log();
+		 	apiCall(_dataUrl + "/resources.json?q=" + string +"&callback=?", function(data){
+		 		console.log(data.results);
+		 	}); 
 		},
 
 		/**/
@@ -278,15 +281,15 @@ var Syndication = (function(){
 			var params;
 			options === undefined ? params = {} : params = $.param(options);
 
-			_thisObj.apiCall(_dataUrl + '/resources/sources.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/sources.json?callback=?', function(data){
+				callback(data.results);
 			}, params);
 		},
 
 		/**/
 		getSourcesById: function(id, callback){
-			_thisObj.apiCall(_dataUrl + '/resources/sources/'+ id.toString() +'.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/sources/'+ id.toString() +'.json?callback=?', function(data){
+				callback(data.results);
 			});
 		},
 
@@ -295,23 +298,24 @@ var Syndication = (function(){
 			var params;
 			options === undefined ? params = {} : params = $.param(options);
 
-			_thisObj.apiCall(_dataUrl + '/resources/tags.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/tags.json?callback=?', function(data){
+				callback(data.results);
 			}, params);
 		},				
 
 		/**/
 		getTagById: function(id, callback){
-			_thisObj.apiCall(_dataUrl + '/resources/tags/'+ id.toString() +'.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/tags/'+ id.toString() +'.json?callback=?', function(data){
+				callback(data.results);
 			});
 		},
 
 		/**/
 		getTagTypes: function(callback){
-			_thisObj.apiCall(_dataUrl + '/resources/tagTypes.json?callback=?', function(data){
-				callback(data);
+			apiCall(_dataUrl + '/resources/tagTypes.json?callback=?', function(data){
+				callback(data.results);
 			})
-		},		
-	}
-}());
+		}
+		/* ========== METHOD LIST END ========== */
+	}	
+}

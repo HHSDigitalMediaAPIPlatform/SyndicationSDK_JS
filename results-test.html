@@ -7,7 +7,7 @@
 	<head>
 		<meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>FOR TESTING SYNDICATION SDK</title>
+        <title>GENERAL SDK TESTING</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		
@@ -17,25 +17,27 @@
 		<img id='testImg' src="" />
 		<div id="addContent"></div>
 		<div id="syndicatedContent"></div>
-	</body>
+		<div id="results"></div>
+
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 	<script src="syndication-sdk.js"></script>
 	<script type="text/javascript">
+	var Syndication = new Syndication();
 
 	/* ================== CAMPAIGNS ================== */
 		/* 1 */
 /*		Syndication.getCampaigns(function(data){
-			console.log(data.results);
+			console.log(data);
 		},{
 			max: 5,
 			offset: 5
-		});*/	
+		});	*/
 		/* 2 */
 /*		Syndication.getCampaignsById(1, function(data){
-			console.log(data.results);
-		});*/		
+			console.log(data);
+		});	*/	
 
 		/* 3 */
 /*		Syndication.getMediaByCampaignId(1, function(data){
@@ -45,22 +47,22 @@
 			offset: 1
 		});*/
 
-	/* LANGUAGES */
+	/* ================== LANGUAGES ================== */
 		/* 4 */
 /*		Syndication.getLanguages(function(data){
-			console.log(data.results);
+			console.log(data);
 		},{
 			offset: 1,
 			max: 1
 		});*/
 		/* 5 */
-/*		Syndication.getLanguageById(2, function(data){
-			console.log(data.results);
+/*		Syndication.getLanguageById(20, function(data){
+			console.log(data);
 		});*/
 
 	/* ================== MEDIA ================== */
 		/* 6 */
-		Syndication.getMedia(function(data){
+/*		Syndication.getMedia(function(data){
 			syndicatedContent = data;
 			console.log("=================> getMedia");
 			console.log(syndicatedContent);
@@ -73,22 +75,32 @@
 		 offset: 5,
 		 max: 5
 
-		});
+		});*/
+		
+		/* LATEST ADDITION */
+		/* 27 */
+/*		Syndication.getMostPopularMedia(function(data){
+			console.log("=================> getMostPopularMedia");
+			console.log(data);
+		},{
+			max: 5,
+			offset: 5
+		});*/
 
 		/* 7 */
-/*		Syndication.getMediaSearchResults('oreo', function(data){
+/*		Syndication.getMediaSearchResults('heart', function(data){
 			console.log("=================> getMediaSearchResults");
-			console.log(data.results);
+			console.log(data[1].mediaType);
 		});*/
 
 		/* 8 */
-/*		Syndication.getMediaById(2, function(data){
+/*		Syndication.getMediaById(36, function(data){
 			console.log("=================> getMediaById");
 			console.log(data);
 		});*/
 
 		/* 9 */
-/*		Syndication.getMediaAlternateImagesById(2, function(data){
+/*		Syndication.getMediaAlternateImagesById(1, function(data){
 			console.log("=================> getMediaAlternateImageById");
 			console.log(data);
 		});*/
@@ -101,7 +113,8 @@
 
 		/* 11 */
 /*		Syndication.getMediaEmbedById(1, function(data){
-			console.log(data.results[0].snippet);
+			console.log(data[0].snippet);
+			console.log(Syndication.addPagination());
 		});*/
 
 		/* 12 */
@@ -121,7 +134,7 @@
 
 		/* 14 */ 
 /*		Syndication.getRelatedMediaById(1, function(data){
-			console.log(data.results);
+			console.log(data);
 		},{
 			max: 2,
 			offset: 1
@@ -129,7 +142,7 @@
 
 		/* 15 */
 /*		Syndication.getMediaHtmlById(1, function(data){
-			var rawHtml = data.results[0].content;
+			var rawHtml = data[0].content;
 			console.log("=================> getMediaHtml");
 			console.log(data);		
 			$('#addContent').html(rawHtml);	
@@ -139,27 +152,31 @@
 		});*/
 
 		/* 16 */
-/*		var thumb = Syndication.getMediaThumbnailById(8);
+/*		var thumb = Syndication.getMediaThumbnailById(32);
 		$('#testImg').attr('src', thumb);*/
 
 		/* 17 */
-/*		Syndication.getMediaYoutubeMetaDataById(1, function(data){
-			console.log(data.results[0].data);
+/*		Syndication.getMediaYoutubeMetaDataById(75, function(data){
+			console.log(data[0].data);
 		});*/
 
 		/* ================== MEDIA TYPES ================== */
 		/* 18 */
 /*		Syndication.getMediaTypes(function(data){
-			console.log(data.results);
-		});*/		
+			console.log(data);
+		});	*/	
 
 		/* ================== RESOURCES ================== */
 		/* 19 */
-
+/*		Syndication.getResources('tobacco', function(data){
+			console.log("=================> getResources");
+			console.log(data);
+		});*/
+		//http://ctacdev.com:8090/Syndication/api/v2/resources.json?q=swimming
 		/* ================== SOURCES ================== */
 		/* 20 */
 /*		Syndication.getSources(function(data){
-			console.log(data.results);
+			console.log(data);
 		},{
 			offset: 2,
 			max: 2
@@ -167,7 +184,7 @@
 
 		/* 21 */
 /*		Syndication.getSourcesById(5, function(data){
-			console.log(data.results);
+			console.log(data);
 		});*/
 
 		/* ================== TAGS  ================== */
@@ -178,10 +195,7 @@
 
 		/* 23 */
 /*		Syndication.getTags(function(data){
-			console.log(data.results);	
-		},{
-			offset: 2,
-			max: 10
+			console.log(data);	
 		});*/
 
 		/* 24 */
@@ -202,6 +216,8 @@
 /*		Syndication.getPage('http://ctacdev.com:8090/Syndication/api/v2/resources/languages.json?callback=?', function(data){
 			console.log(data);
 		}, {});*/
+
+
 	</script>
 <!--	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script>
@@ -217,4 +233,5 @@
 				});
 			});	
 	</script>-->
+	</body>
 </html>

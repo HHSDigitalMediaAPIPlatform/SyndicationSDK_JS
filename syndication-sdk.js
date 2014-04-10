@@ -133,8 +133,8 @@ function Syndication(url){
 
 		/*GET API {id}/alternateImages.json CALL*/
 		getMediaAlternateImagesById: function(id, callback){
-			apiCall(_dataUrl + '/resources/media/'+id.toString()+'/alternateImages.json?callback=?', function(data){
-				callback(data.results);
+			apiCall(_dataUrl + '/resources/media/'+id.toString()+'.json?callback=?', function(data){
+				callback(data.results[0].alternateImages);
 			});
 		},
 
@@ -270,9 +270,9 @@ function Syndication(url){
 			}, params);
 		},
 
-		getResources: function(string, callback){console.log();
+		getResources: function(string, callback){
 		 	apiCall(_dataUrl + "/resources.json?q=" + string +"&callback=?", function(data){
-		 		console.log(data.results);
+		 		callback(data.results);
 		 	}); 
 		},
 

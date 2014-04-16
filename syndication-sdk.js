@@ -3,7 +3,7 @@ function Syndication(url){
 	var _dataUrl;
 	url !== undefined ? _dataUrl = url : _dataUrl = "http://ctacdev.com:8090/Syndication/api/v2";
 	
-	var pagination;
+	var _pagination;
 	var apiCall = function( urlString, funcCallback, paramsObj){//console.log(urlString);
 
 		$.ajax({
@@ -13,7 +13,7 @@ function Syndication(url){
 		    dataType: 'jsonp',
 		    success: function(data){
 				if(data.meta !== undefined){
-					pagination = data.meta.pagination;	
+					_pagination = data.meta.pagination;
 				}
 				
 				funcCallback(data);				
@@ -29,7 +29,7 @@ function Syndication(url){
 	return {
 		/* ========== METHOD LIST START ========== */
 		addPagination : function(){
-			return pagination;
+			return _pagination;
 		},
 
 		/**/
@@ -66,61 +66,7 @@ function Syndication(url){
 			});
 		},
 
-		/*
-			max 						: int
-			offset						: int
-			sourceUrlContains			: string
-			order						: string
-			mediaType 					: string
-			name 						: string
-			nameContains 				: string
-			descriptionContains			: string
-			sourceUrl 					: string
-			sourceUrlContains			: string
-			dateContentAuthored			: string
-			contentAuthoredSinceDate 	: string
-			contentAuthoredBeforeDate	: string
-			contentAuthoredInRange		: string
-			dateContentUpdated			: string
-			contentUpdatedSinceDate,
-			contentUpdatedBeforeDate,
-			contentUpdatededInRange,
-			dateContentPublished,
-			contentPublishedSinceDate,
-			contentPublishedBeforeDate,
-			contentPublishedInRange,
-			dateContentReviewed,
-			contentReviewedSinceDate,
-			contentReviewedBeforeDate,
-			contentReviewedInRange,
-			dateSyndicationCaptured,
-			syndicationCapturedSinceDate,
-			syndicationCapturedBeforeDate,
-			syndicationCapturedInRange,
-			dateSyndicationUpdated,
-			syndicationUpdatedSinceDate,
-			syndicationUpdatedBeforeDate,
-			syndicationUpdatedInRange,
-			dateSyndicationVisible,
-			syndicationVisibleSinceDate,
-			syndicationVisibleBeforeDate,
-			syndicationVisibleInRange,
-			languageId,
-			languageName,
-			languageValue,
-			hash,
-			hashContains,
-			sourceId,
-			sourceName,
-			sourceNameContains,
-			sourceAcronym,
-			sourceAcronymContains,
-			tagIds,
-			restrictToSet
-		*/
-
 		/*GET API media.json CALL*/ 
-		// Was 'getAllMediaTypes' no is 'getMedia'
 		getMedia : function(callback, options) {
 			var params;
 			options === undefined ? params = {} : params = $.param(options);
@@ -134,7 +80,14 @@ function Syndication(url){
 		/*GET API {id}/alternateImages.json CALL*/
 		getMediaAlternateImagesById: function(id, callback){
 			apiCall(_dataUrl + '/resources/media/'+id.toString()+'.json?callback=?', function(data){
-				callback(data.results[0].alternateImages);
+				var alternateImages = data.results[0].alternateImages;
+				if(alternateImages.length === 0){
+					callback(data.results[0].alternateImages);
+					return
+				}
+				apiCall(_dataUrl + '/resources/media/'+id.toString()+'.json?callback=?', function(data){
+					callback(data.results[0].thumbnailUrl);
+				});
 			});
 		},
 

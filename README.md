@@ -1,13 +1,21 @@
-#HHS Media Services JavaScript SDK
+#<a name="home"></a>HHS Media Services JavaScript SDK
 This is a JavaScript, jQuery dependent implementation of the HHS Media Server API. This SDK offers JavaScript developer’s familiarity and easy access to HHS Media Services data using AJAX to return the data in a JSON format for implementation into websites or web apps.
 
 #JavaScript SDK
 __Content__
 
-* Introduction 
-* Methods
+* [Introduction](#intro) 
+* [Methods](#methods)
+	* [Campaigns](#campaigns)
+	* [Languages](#languages)
+	* [Media](#media)
+	* [MediaTypes](#mediatypes)
+	* [Resources](#resource)
+	* [Sources](#source)
+	* [Tags](#tags)
+* [*Understanding Sorting](#sorting)
 
-#INTRODUCTION
+#<a name="intro"></a>INTRODUCTION
 
 To use the SDK you'll need to download it from here (_**PLACE HOLDER FOR DOWNLOAD URL**_) and atleast jQuery version 1.7. Once downloaded you can add the script to your project and then create a new **_Syndication_** object from the Syndication constructor.
 
@@ -17,9 +25,11 @@ To use the SDK you'll need to download it from here (_**PLACE HOLDER FOR DOWNLOA
 	
 This will instaniate the Syndication object for use in your project and give you access to the various methods for obtaining content.
 
-#METHODS
+***
 
-##Campaigns: Information about campaigns
+#<a name="methods"></a>METHODS
+
+##<a name="campaigns"></a>Campaigns: Information about campaigns
 
 _**getCampaigns:**_  Get a list of campaigns based on params.
 
@@ -29,7 +39,10 @@ _**getCampaigns:**_  Get a list of campaigns based on params.
 :Optional parameters:  
 **max**: Integer -  // The maximum number of records to return.  
 **offset**: Integer - // The offset of the records set to return for pagination.  
-**sort**t: String - // * Set of fields to sort the records by.
+**sort**t: String - // [*](#sorting)Set of fields to sort the records by.
+
+**Sort By**  
+id, name, startDate, mediaItems, description, endDate,source, contactEmail
 
 **Exmaple:**
 
@@ -63,7 +76,10 @@ _**getCampaignsById:**_  Get a list of media items for a specific campaign based
 :Optional parameters:  
 **max**: Integer -  // The maximum number of records to return.  
 **offset**: Integer - // The offset of the records set to return for pagination.  
-**sort**t: String - // The name of the property to which sorting will be applied.
+**sort**t: String - // [*](#sorting)The name of the property to which sorting will be applied.
+
+**Sort By**  
+id, name, startDate, mediaItems, description, endDate,source, contactEmail
 
 **Exmaple:**
 
@@ -75,7 +91,7 @@ _**getCampaignsById:**_  Get a list of media items for a specific campaign based
 		offset: 5		
 	});
 
-##Languages: Information about languages
+##<a name="languages"></a>Languages: Information about languages
 
 _**getLanguages**_:  Get a list of languages based on params.
 
@@ -84,7 +100,10 @@ _**getLanguages**_:  Get a list of languages based on params.
 :Optional parameters:  
 **max**: Integer - // The maximum number of records to return  
 **offset**: Integer - // The offset of the records set to return for pagination  
-**sort**t: String - // * Set of fields to sort the records by.
+**sort**t: String - // [*](#sorting)Set of fields to sort the records by.
+
+**Sort By**  
+id, name, startDate, isoCode
 
 **Exmaple:**
 
@@ -109,7 +128,7 @@ getLanguageById: Get information about a specific language by ID.
 		//Callback data code goes here.
 	});		
 
-##Media: Information about media
+##<a name="media"></a>Media: Information about media
 
 _**getMedia**_:  Get a list of media items based on params.  
 
@@ -118,7 +137,7 @@ _**getMedia**_:  Get a list of media items based on params.
 :Optional parameters:   
  **max**: Integer - // The maximum number of records to return.  
  **offset**: Integer - // The offset of the records set to return for pagination.  
- **sort**: String - // * Set of fields to sort the records by.  
+ **sort**: String - // [*](#sorting)Set of fields to sort the records by.  
  **mediaTypes**: String - // Find all media items belonging to the specified media type[s].  
  **name**: String - // Find all media items containing the provided name, case insensitive.  
  **nameContains**: String - // Find all media items containing the partial name, case insensitive.  
@@ -162,6 +181,9 @@ _**getMedia**_:  Get a list of media items based on params.
  **tagIds**: String - // Find only media items tagged with the specified tag Ids.  
  **restrictToSet**: String - // Find only media from within the supplied list of Ids.
 
+**Sort By**  
+id, name, sourceUrl, dateSyndicationCaptured, dateSyndicationUpdated, dateSyndicationVisible, language, source, description, dateContentAuthored, dateContentUpdated, dateContentPublished, dateContentReviewed
+
 **Example:**
 
 	so.getMedia(function(data){
@@ -197,7 +219,10 @@ _**getMediaSearchResults**_:  Search for the supplied text globally across media
 :Optional parameters:  
 **max**: Integer - // The maximum number of records to return  
 **offset**: Integer - // The offset of the records set to return for pagination  
-**sort**t: String - // * Set of fields to sort the records by.
+**sort**t: String - // [*](#sorting)Set of fields to sort the records by.
+
+**Sort By**  
+id, name, sourceUrl, dateSyndicationCaptured, dateSyndicationUpdated, dateSyndicationVisible, language, source, description, dateContentAuthored, dateContentUpdated, dateContentPublished, dateContentReviewed
 
 **Example:**
 
@@ -308,7 +333,10 @@ _**getRelatedMediaById**_: Get the media related to the current media item.
 :Optional parameters:  
 **max**: Integer - // The maximum number of records to return  
 **offset**: Integer - // The offset of the records set to return for pagination  
-**sort**: String - // * Set of fields to sort the records by.
+**sort**: String - // [*](#sorting)Set of fields to sort the records by.
+
+**Sort By**  
+id, name, sourceUrl, dateSyndicationCaptured, dateSyndicationUpdated, dateSyndicationVisible, language, source, description, dateContentAuthored, dateContentUpdated, dateContentPublished, dateContentReviewed
 
 **Example:**
 
@@ -372,7 +400,7 @@ _**getMediaYoutubeMetaDataById**_: Get the Youtube meta-data for a video item.
 		//Callback data code goes here.
 	});
 
-##MediaTypes: Information about media types
+##<a name="mediatypes"></a>MediaTypes: Information about media types
 
 _**getMediaTypes**_: Get a list of available media types.  
 :Required parameters:  **none**
@@ -386,7 +414,7 @@ _**getMediaTypes**_: Get a list of available media types.
 		//Returns available media types.
 	});
 	
-##Resources: Global Search
+##<a name="resource"></a>Resources: Global Search
 
 _**getResources**_: Search for the supplied text globally across resource types.
 
@@ -401,7 +429,7 @@ _**getResources**_: Search for the supplied text globally across resource types.
 		//Callback data code goes here.
 	}); 
 
-##Sources: Information about sources.
+##<a name="source"></a>Sources: Information about sources.
 
 _**getSources**_: Get a list of sources based on params.
 :Required parameters:  **none**
@@ -409,7 +437,10 @@ _**getSources**_: Get a list of sources based on params.
 :Optional parameters:  
 **max**: Integer - // The maximum number of records to return  
 **offset**: Integer - // The offset of the records set to return for pagination  
-**sort**: String - // * Set of fields to sort the records by.
+**sort**: String - // [*](#sorting)Set of fields to sort the records by.
+
+**Sort By**  
+id, name, acronyml, websiteUrl, largeLogoUrl, smallLogoUrl, contactEmail
 
 **Example:**
 
@@ -433,7 +464,7 @@ _**getSourcesById**_: Get information about a specific source by Id.
 		//Callback data code goes here.
 	});
 	
-##Tags: Information about tags
+##<a name="tags"></a>Tags: Information about tags
 
 _**getTagTypes**_: Get a list of types.
 
@@ -454,12 +485,15 @@ _**getTags**_: Get a list of tags.
 :Optional parameters:  
 **max**: Integer - // The maximum number of records to return  
 **offset**: Integer - // The offset of the records set to return for pagination  
-**sort**: String - // The name of the property to which sorting will be applied.  
+**sort**: String - // [*](#sorting)The name of the property to which sorting will be applied.  
 **name**: String - // Return tags[s] matching the supplied name.  
 **nameContains**: String - // Return tags which contain the supplied partial name.  
 **syndicationId**: Integer - // Return tags associated with the supplied syndication id.  
 **typeId**: Integer - // Return tags belonging to the supplied tag type id.  
 **typeName**: - // Return tags belonging to the supplied tag type name.  
+
+**Sort By**  
+id, name, language, type
 
 **Example:**
 
@@ -479,6 +513,9 @@ _**getTagById**_: Get information about a specific Tag by ID.
 
 :Optional parameters: **none**
 
+**Sort By**  
+id, name, language, type
+
 **Example:**
 
 	so.getTagById(1, function(data){
@@ -493,8 +530,11 @@ _**getMediaByTagId**_: Return the media items associated with this tag.
 :Optional parameters:  
 **max**: Integer - // The maximum number of records to return  
 **offset**: Integer - // The offset of the records set to return for pagination  
-**sort**: String - // The name of the property to which sorting will be applied
+**sort**: String - // [*](#sorting)The name of the property to which sorting will be applied
 
+**Sort By**  
+id, name, sourceUrl, dateSyndicationCaptured, dateSyndicationUpdated, dateSyndicationVisible, language, source, description, dateContentAuthored, dateContentUpdated, dateContentPublished, dateContentReviewed
+ 
 **Example:**
 
 	so.getMediaByTagId(1, function(data){
@@ -512,7 +552,10 @@ _**getRelatedTagsById**_: Get information about related tags for a specific Tag.
 :Optional parameters:  
 **max**: Integer - // The maximum number of records to return.  
 **offset**: Integer - // The offset of the records set to return for pagination.  
-**sort**: String - // The name of the property to which sorting will be applied.  
+**sort**: String - // [*](#sorting)The name of the property to which sorting will be applied.  
+
+**Sort By**  
+id, name, language, type
 
 **Example**
 
@@ -526,18 +569,18 @@ _**addPagination**_: Returns pagination information as an object. To be added in
 
 :Optional parameters:  **none**
 
-:Object:  
-**count**: - // Total amount of returned records.  
-**currentUrl** - // API url call page to current records page.  
-**max** - // The maximum number of records to return.  
-**nextUrl** - // Url to call the next set of items based of total amount of returned items.  
-**offset** - // The offset amount used for calling records.  
-**order** - // Order in which records are displayed.  
-**pageNum** - // Current page of records.  
-**previousUrl** - // API call url to previous records page.  
-**sort** - // How records are sorted.
-**total** - // Total records count.
-**totalPages** - // Total pages based off of record count.
+:Returned Object:  
+**count**: Integer - // Total amount of returned records.  
+**currentUrl**: String - // API url call page to current records page.  
+**max**: Integer - // The maximum number of records to return.  
+**nextUrl**: String - // Url to call the next set of items based of total amount of returned items.  
+**offset**: Integer - // The offset amount used for calling records.  
+**order**: String - // Order in which records are displayed.  
+**pageNum**: Integer - // Current page of records.  
+**previousUrl**: - // API call url to previous records page.  
+**sort**: String - // How records are sorted.
+**total**: Integer - // Total records count.
+**totalPages**: Integer - // Total pages based off of record count.
 
 **Example**
 
@@ -557,3 +600,59 @@ _**addPagination**_: Returns pagination information as an object. To be added in
 		offset: 5,
 		sort: '-id'
 	});
+	
+_**getPage**_: Makes API call to get specfic page. Can be used in conjunction with returned pagination to get nextUrl and previousUrl.
+
+
+:Required parameters: 
+**url**: String - // Url passed to make API call and return records. 
+
+:Optional parameters:  **none**
+
+**Example**
+
+	var nextPage;
+	var currentPage;
+	var pagination;
+	var previousPage;
+	
+	so.getMedia(function(data){
+			//Callback data code goes here.
+			var pagination = so.addPagination();
+			nextPage = pagination.nextUrl;	………
+			// Portion of above code 
+	
+	$('nextPageBtn').click(function(){
+		so.getPage(nextPage, function(data){
+			//Callback data code goes here.
+			console.log(data);
+		});
+	});
+
+***
+
+##<a name="sorting"></a>UNDERSTANDING SORTING
+
+Some methods allow you to pass in a _**sort**_ parameter to sort returned records. The _**sort**_ param supports multi column sorting through the use of commas as delimiters, and a hyphen to denote descending order. i.e calling the _getMedia_ method and passing in a sort parameter of _id_, would return records in ascending order by _**"id"**_. If you made the same method call but instead passed _**"-id"**_ as a parameter you would return your records in descending order. 
+
+**Example**
+
+_Ascending Order_  
+
+	so.getMedia(function(data){
+        	//Callback data code goes here.
+       },{
+        	mediaTypes: 'video',
+        	sort: 'id' // This will return records in ascending order
+       });
+
+_Descending Order_
+
+	so.getMedia(function(data){
+        	//Callback data code goes here.
+       },{
+        	mediaTypes: 'video',
+        	sort: '-id' // This will return records in descending order
+       });
+        
+[Back To Top](#home) 

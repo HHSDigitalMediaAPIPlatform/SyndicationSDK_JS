@@ -25,215 +25,199 @@
 
 <!--	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script> -->
 	<script src="syndication-sdk.js"></script>
-	<script type="text/javascript">
-	var Syndication = new Syndication();
+		<script type="text/javascript">
+			var Syndication = new Syndication();
 
-	/* ================== CAMPAIGNS ================== */
-		/* 1 */
-/*		Syndication.getCampaigns(function(data){
-			console.log(data);
-		},{
-			max: 5,
-			offset: 5
-		});	*/
-		/* 2 */
-/*		Syndication.getCampaignsById(1, function(data){
-			console.log(data);
-		});	*/	
+			/* ================== CAMPAIGNS ================== */
+				/* 1 */
+		/*		Syndication.getCampaigns(function(data){
+					console.log(data);
+				},{
+					max: 5,
+					offset: 5
+				});	*/
+				/* 2 */
+		/*		Syndication.getCampaignsById(1, function(data){
+					console.log(data);
+				});	*/	
 
-		/* 3 */
-/*		Syndication.getMediaByCampaignId(1, function(data){
-			console.log(data);
-		},{
-			max: 2,
-			offset: 1
-		});*/
+				/* 3 */
+		/*		Syndication.getMediaByCampaignId(1, function(data){
+					console.log(data);
+				},{
+					max: 2,
+					offset: 1
+				});*/
 
-	/* ================== LANGUAGES ================== */
-		/* 4 */
-/*		Syndication.getLanguages(function(data){
-			console.log(data);
-		},{
-			offset: 1,
-			max: 1
-		});*/
-		/* 5 */
-/*		Syndication.getLanguageById(2, function(data){
-			console.log(data);
-		});*/
-		var pagination;
-	/* ================== MEDIA ================== */
-		/* 6 */
-		Syndication.getMedia(function(data){
-			syndicatedContent = data;
-			//console.log("=================> getMedia");
-			//console.log(syndicatedContent);
-			pagination = Syndication.addPagination();console.log(pagination);
-			currentPageNumber = pagination.pageNum;
-			totalPages = pagination.totalPages;
-			
-		}, {
-		 
-		 offset: 5,
-		 max: 5
+			/* ================== LANGUAGES ================== */
+				/* 4 */
+		/*		Syndication.getLanguages(function(data){
+					console.log(data);
+				},{
+					offset: 1,
+					max: 1
+				});*/
+				/* 5 */
+		/*		Syndication.getLanguageById(2, function(data){
+					console.log(data);
+				});*/
+				//var pagination;
+			/* ================== MEDIA ================== */
+				/* 6 */
+				Syndication.getMedia(function(data){
+					syndicatedContent = data;
+					//console.log("=================> getMedia");
+					console.log(syndicatedContent);
+					pagination = Syndication.addPagination();
+					currentPageNumber = pagination.pageNum;
+					totalPages = pagination.totalPages;
+					
+				}, {
+				 
+				 offset: 5,
+				 max: 5
 
-		});
-		
-		/* LATEST ADDITION */
-		/* 27 */
-/*		Syndication.getMostPopularMedia(function(data){
-			console.log("=================> getMostPopularMedia");
-			console.log(data);
-		},{
-			max: 5,
-			offset: 5
-		});*/
-
-		/* 7 */
-/*		Syndication.getMediaSearchResults('heart', function(data){
-			console.log("=================> getMediaSearchResults");
-			console.log(data[1].mediaType);
-		});*/
-
-		/* 8 */
-/*		Syndication.getMediaById(36, function(data){
-			console.log("=================> getMediaById");
-			console.log(data);
-		});*/
-
-		/* 9 */
-/*		Syndication.getMediaAlternateImagesById(1, function(data){
-			console.log("=================> getMediaAlternateImageById");
-			console.log(data);
-		});
-*/
-		/* 10 */
-/*		Syndication.getMediaContentById(2, function(data){
-			console.log("=================> getMediaContentById");
-			console.log(data);
-		});*/
-
-		/* 11 */
-/*		Syndication.getMediaEmbedById(1, function(data){
-			console.log(data[0].snippet);
-			console.log(Syndication.addPagination());
-		});*/
-
-		/* 12 */
-/*		var myPreview = Syndication.getMediaPreviewById(1, {
-			imageFloat: 'left',
-			height: 480,
-			width: 650,
-			previewSize: 'custom'
-		});	
-		console.log("==================> getEmbed\n"+myPreview);
-		$('#testImg').attr('src', myPreview);*/
-
-		/* 13 */
-/*		Syndication.getMediaRatingById(1, function(data){
-			console.log(data);
-		});*/
-
-		/* 14 */ 
-/*		Syndication.getRelatedMediaById(1, function(data){
-			console.log(data);
-		},{
-			max: 2,
-			offset: 1
-		});*/
-
-		/* 15 */
-/*		Syndication.getMediaHtmlById(1, function(data){
-			var rawHtml = data[0].content;
-			console.log("=================> getMediaHtml");
-			console.log(data);		
-			$('#addContent').html(rawHtml);	
-		}, {
-			imageFloat: 'left',
-			imageMargin: '0,0,0,0'
-		});*/
-
-		/* 16 */
-/*		var thumb = Syndication.getMediaThumbnailById(32);
-		$('#testImg').attr('src', thumb);*/
-
-		/* 17 */
-/*		Syndication.getMediaYoutubeMetaDataById(75, function(data){
-			console.log(data[0].data);
-		});*/
-
-		/* ================== MEDIA TYPES ================== */
-		/* 18 */
-/*		Syndication.getMediaTypes(function(data){
-			console.log(data);
-		});	*/	
-
-		/* ================== RESOURCES ================== */
-		/* 19 */
-/*		Syndication.getResources('tobacco', function(data){
-			console.log("=================> getResources");
-			console.log(data);
-		});*/
-
-		/* ================== SOURCES ================== */
-		/* 20 */
-/*		Syndication.getSources(function(data){
-			console.log(data);
-		},{
-			offset: 2,
-			max: 2
-		});*/
-
-		/* 21 */
-/*		Syndication.getSourcesById(5, function(data){
-			console.log(data);
-		});*/
-
-		/* ================== TAGS  ================== */
-		/* 22 */
-/*		Syndication.getTagTypes(function(data){
-			console.log(data);
-		});*/
-
-		/* 23 */
-/*		Syndication.getTags(function(data){
-			console.log(data);	
-		});*/
-
-		/* 24 */
-/*		Syndication.getTagById(1, function(data){
-			console.log(data.results);
-		});*/
-
-		/* 25 */
-/*		Syndication.getMediaByTagId(1, function(data){
-			console.log(data);
-		});*/
-
-		/* 26 */
-/*		Syndication.getRelatedTagsById(1, function(data){
-			console.log(data.results);
-		});*/
-
-/*		Syndication.getPage('http://ctacdev.com:8090/Syndication/api/v2/resources/languages.json?callback=?', function(data){
-			console.log(data);
-		});*/
-
-
-	</script>
-<!--	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script>
-		$(document).ready(
-			function(){
-				$.ajax({
-					url: 'http://ctacdev.com:8090/Syndication/api/v2/resources/media/1/syndicate.json?',
-					type: "GET",
-					dataType: 'jsonp',
-					success: function(data){
-						$('#syndicatedContent').html(data.results[0].content);
-					}
 				});
-			});	
-	</script>-->
+				
+				/* LATEST ADDITION */
+				/* 27 */
+		/*		Syndication.getMostPopularMedia(function(data){
+					console.log("=================> getMostPopularMedia");
+					console.log(data);
+				},{
+					max: 5,
+					offset: 5
+				});*/
+
+				/* 7 */
+		/*		Syndication.getMediaSearchResults('heart', function(data){
+					console.log("=================> getMediaSearchResults");
+					console.log(data[1].mediaType);
+				});*/
+
+				/* 8 */
+		/*		Syndication.getMediaById(36, function(data){
+					console.log("=================> getMediaById");
+					console.log(data);
+				});*/
+
+				/* 9 */
+		/*		Syndication.getMediaAlternateImagesById(1, function(data){
+					console.log("=================> getMediaAlternateImageById");
+					console.log(data);
+				});
+		*/
+				/* 10 */
+		/*		Syndication.getMediaContentById(2, function(data){
+					console.log("=================> getMediaContentById");
+					console.log(data);
+				});*/
+
+				/* 11 */
+		/*		Syndication.getMediaEmbedById(1, function(data){
+					console.log(data[0].snippet);
+					console.log(Syndication.addPagination());
+				});*/
+
+				/* 12 */
+		/*		var myPreview = Syndication.getMediaPreviewById(1, {
+					imageFloat: 'left',
+					height: 480,
+					width: 650,
+					previewSize: 'custom'
+				});	
+				console.log("==================> getEmbed\n"+myPreview);
+				$('#testImg').attr('src', myPreview);*/
+
+				/* 13 */
+		/*		Syndication.getMediaRatingById(1, function(data){
+					console.log(data);
+				});*/
+
+				/* 14 */ 
+		/*		Syndication.getRelatedMediaById(1, function(data){
+					console.log(data);
+				},{
+					max: 2,
+					offset: 1
+				});*/
+
+				/* 15 */
+		/*		Syndication.getMediaHtmlById(1, function(data){
+					var rawHtml = data[0].content;
+					console.log("=================> getMediaHtml");
+					console.log(data);		
+					$('#addContent').html(rawHtml);	
+				}, {
+					imageFloat: 'left',
+					imageMargin: '0,0,0,0'
+				});*/
+
+				/* 16 */
+		/*		var thumb = Syndication.getMediaThumbnailById(32);
+				$('#testImg').attr('src', thumb);*/
+
+				/* 17 */
+		/*		Syndication.getMediaYoutubeMetaDataById(75, function(data){
+					console.log(data[0].data);
+				});*/
+
+				/* ================== MEDIA TYPES ================== */
+				/* 18 */
+		/*		Syndication.getMediaTypes(function(data){
+					console.log(data);
+				});	*/	
+
+				/* ================== RESOURCES ================== */
+				/* 19 */
+		/*		Syndication.getResources('tobacco', function(data){
+					console.log("=================> getResources");
+					console.log(data);
+				});*/
+
+				/* ================== SOURCES ================== */
+				/* 20 */
+		/*		Syndication.getSources(function(data){
+					console.log(data);
+				},{
+					offset: 2,
+					max: 2
+				});*/
+
+				/* 21 */
+		/*		Syndication.getSourcesById(5, function(data){
+					console.log(data);
+				});*/
+
+				/* ================== TAGS  ================== */
+				/* 22 */
+		/*		Syndication.getTagTypes(function(data){
+					console.log(data);
+				});*/
+
+				/* 23 */
+		/*		Syndication.getTags(function(data){
+					console.log(data);	
+				});*/
+
+				/* 24 */
+		/*		Syndication.getTagById(1, function(data){
+					console.log(data.results);
+				});*/
+
+				/* 25 */
+		/*		Syndication.getMediaByTagId(1, function(data){
+					console.log(data);
+				});*/
+
+				/* 26 */
+		/*		Syndication.getRelatedTagsById(1, function(data){
+					console.log(data.results);
+				});*/
+
+		/*		Syndication.getPage('http://ctacdev.com:8090/Syndication/api/v2/resources/languages.json?callback=?', function(data){
+					console.log(data);
+				});*/
+		</script>
 	</body>
 </html>

@@ -7,13 +7,13 @@ This is a JavaScript, jQuery dependent implementation of the HHS Media Server AP
 
 #INTRODUCTION
 
-To use the SDK you'll need to download it from here (_**PLACE HOLDER FOR DOWNLOAD URL**_) and atleast jQuery version 1.7. Once downloaded you can add the script to your project and then create a new **_Syndication_** object from the Syndication constructor.
+To use the SDK you'll need to download it from here (_**PLACE HOLDER FOR DOWNLOAD URL**_) and at least jQuery version 1.7. Once downloaded you can add the script to your project and then create a new **_Syndication_** object from the Syndication constructor.
 
 **Example:**
 
 	var so = new Syndication();
 	
-This will instaniate the Syndication object for use in your project and give you access to the various methods for obtaining content.
+This will instantiate the Syndication object for use in your project and give you access to the various methods for obtaining content.
 
 ***
 
@@ -34,7 +34,7 @@ _**getCampaigns:**_  Get a list of campaigns based on params.
 **Sort By**  
 id, name, startDate, mediaItems, description, endDate,source, contactEmail
 
-**Exmaple:**
+**Example:**
 
 	so.getCampaigns(function(data){
 		//Callback data code goes here.
@@ -52,7 +52,7 @@ getCampaignsById:  Get information about a specific campaign by ID.
 
 :Optional parameters:  **none**
 
-**Exmaple:**
+**Example:**
 
 	so.getCampaignsById(1, function(data){  
 		//Callback data code goes here.
@@ -71,7 +71,7 @@ _**getCampaignsById:**_  Get a list of media items for a specific campaign based
 **Sort By**  
 id, name, startDate, mediaItems, description, endDate,source, contactEmail
 
-**Exmaple:**
+**Example:**
 
 	so.getMediaByCampaignId(1, function(data){  
 		//Callback data code goes here.
@@ -95,7 +95,7 @@ _**getLanguages**_:  Get a list of languages based on params.
 **Sort By**  
 id, name, startDate, isoCode
 
-**Exmaple:**
+**Example:**
 
 	so.getMediaByCampaignId(1, function(data){  
 		//Callback data code goes here.
@@ -112,7 +112,7 @@ getLanguageById: Get information about a specific language by ID.
 
 :Optional parameters: **none**
 
-**Exmaple:**
+**Example:**
 
 	so.getLanguageById(2, function(data){
 		//Callback data code goes here.
@@ -163,7 +163,7 @@ _**getMedia**_:  Get a list of media items based on params.
  **languageIsoCode**: String - // Find all media items written in the language specified by 639-2 isoCode , case insensitive.  
  **hash**: String - // Find all media items which match the provided hash, case insensitive.  
  **hashContains**: String - // Find all media items which match the provided partial hash, case insensitive.  
- **sourceId**: Interger - // Find all media items that belong to the source specified by Id.  
+ **sourceId**: Integer - // Find all media items that belong to the source specified by Id.  
  **sourceName**: String - //  Find all media items that belong to the source specified by name, case insensitive.  
  **sourceNameContains**: String - //  Find all media items that belong to the source specified by partial name, case insensitive.
  **sourceAcronym**: String - //   Find all media items that belong to the source specified by acronym, case insensitive.
@@ -268,7 +268,7 @@ _**getMediaEmbedById**_:  Get the javascript or iframe embed code for this media
 :Optional parameters:  
 **flavor**: String - // Currently supports 'iframe', defaults to 'javascript'.  
 **width**: Integer - // The width of the generated iframe. 
-**height**: Interger - // The height of the generated iframe.  
+**height**: Integer - // The height of the generated iframe.  
 **iframeName**: String - // The name of the iframe element.  
 **excludeJquery**: Boolean - // Should a reference to the JQuery Library be omitted?  
 **excludeDiv**: Boolean - // Should the div to insert content into be omitted?  
@@ -287,7 +287,7 @@ _**getMediaPreviewById**_: Get the jpg preview of the content item where applica
 
 :Optional parameters:  
 **imageFloat**: String - // Accepts valid CSS float options, such as 'left' or 'right'. Will inject a style into the content before rendering.  
-**imageMargin**: String - // Accepts 4 CSV values representing pixel sizes of margin similar to CSS. Default format is 'north,east,sout,west' - for example '0,10,10,0' would put a 10 pixel margin on the right and bottom sides of an image. Will inject a style into the content before rendering.  
+**imageMargin**: String - // Accepts 4 CSV values representing pixel sizes of margin similar to CSS. Default format is 'north,east,south,west' - for example '0,10,10,0' would put a 10 pixel margin on the right and bottom sides of an image. Will inject a style into the content before rendering.  
 **previewSize**: String - // Accepts several preset sizes: thumbnail, small, medium, large, custom. The use of custom requires that height and width be provided as well.  
 **width**: Integer - // (Requires previewSize=custom) Supply the width of the custom preview.  
 **height**:Integer - // (Requires previewSize=custom) Supply the height of the custom preview.  
@@ -352,7 +352,7 @@ _**getMediaHtmlById**_: Get the content for a given MediaItem . Supports JSON an
 **font-size**: Integer - // Set font size (in points) of p, div, and span tags.  
 **imageFloat**: String - // Accepts valid CSS float options, such as 'left' or 'right'. Will inject a style into the content before rendering.  
 **imageMargin**: String - // Accepts 4 CSV values representing pixel sizes of margin similar to CSS. Default format is 'north,east,south,west' - for example '0,10,10,0' would put a 10 pixel margin on the right and bottom sides of an image. Will inject a style into the content before rendering.  
-**autoplay**: Boolean - // If content is a video, the embeded video will auto play when loaded.  
+**autoplay**: Boolean - // If content is a video, the embedded video will auto play when loaded.  
 **rel**: Boolean - // If content is a video, related items will be shown at the end of playback. 
 
 **Example:**
@@ -408,7 +408,7 @@ _**getMediaTypes**_: Get a list of available media types.
 
 _**getResources**_: Search for the supplied text globally across resource types.
 
-:Reuired parameters:
+:Required parameters:
 **q**: Integer - // The search query supplied by the user
 
 :Optional parameters: **none**
@@ -430,7 +430,7 @@ _**getSources**_: Get a list of sources based on params.
 **sort**: String - // [*](#sorting)Set of fields to sort the records by.
 
 **Sort By**  
-id, name, acronyml, websiteUrl, largeLogoUrl, smallLogoUrl, contactEmail
+id, name, acronym, websiteUrl, largeLogoUrl, smallLogoUrl, contactEmail
 
 **Example:**
 
@@ -443,7 +443,7 @@ id, name, acronyml, websiteUrl, largeLogoUrl, smallLogoUrl, contactEmail
 	
 _**getSourcesById**_: Get information about a specific source by Id.
 
-:Reuired parameters:
+:Required parameters:
 **id**: Integer - // The id of the source to look up
 
 :Optional parameters: **none**
@@ -594,7 +594,7 @@ _**addPagination**_: Returns pagination information as an object. To be added in
 		sort: '-id'
 	});
 	
-_**getPage**_: Makes API call to get specfic page. Can be used in conjunction with returned pagination to get nextUrl and previousUrl.
+_**getPage**_: Makes API call to get specific page. Can be used in conjunction with returned pagination to get nextUrl and previousUrl.
 
 
 :Required parameters: 

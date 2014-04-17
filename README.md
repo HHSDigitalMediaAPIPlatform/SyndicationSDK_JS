@@ -1,4 +1,6 @@
-#<a name="home"></a>HHS Media Services JavaScript SDK
+[TOC]
+
+#HHS Media Services JavaScript SDK
 This is a JavaScript, jQuery dependent implementation of the HHS Media Server API. This SDK offers JavaScript developer’s familiarity and easy access to HHS Media Services data using AJAX to return the data in a JSON format for implementation into websites or web apps.
 
 #JavaScript SDK
@@ -15,7 +17,7 @@ __Content__
 	* [Tags](#tags)
 * [*Understanding Sorting](#sorting)
 
-#<a class="intro" href="#intro" name="intro">INTRODUCTION</a>
+#INTRODUCTION
 
 To use the SDK you'll need to download it from here (_**PLACE HOLDER FOR DOWNLOAD URL**_) and atleast jQuery version 1.7. Once downloaded you can add the script to your project and then create a new **_Syndication_** object from the Syndication constructor.
 
@@ -27,9 +29,9 @@ This will instaniate the Syndication object for use in your project and give you
 
 ***
 
-#<a name="methods"></a>METHODS
+#METHODS
 
-##<a name="campaigns"></a>Campaigns: Information about campaigns
+##Campaigns: Information about campaigns
 
 _**getCampaigns:**_  Get a list of campaigns based on params.
 

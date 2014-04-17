@@ -80,7 +80,7 @@ id, name, startDate, mediaItems, description, endDate,source, contactEmail
 		max: 5,
 		offset: 5		
 	});
-
+***
 ##Languages: Information about languages
 
 _**getLanguages**_:  Get a list of languages based on params.
@@ -117,7 +117,7 @@ getLanguageById: Get information about a specific language by ID.
 	so.getLanguageById(2, function(data){
 		//Callback data code goes here.
 	});		
-
+***
 ##Media: Information about media
 
 _**getMedia**_:  Get a list of media items based on params.  
@@ -389,7 +389,7 @@ _**getMediaYoutubeMetaDataById**_: Get the Youtube meta-data for a video item.
 	so.getMediaYoutubeMetaDataById(75, function(data){
 		//Callback data code goes here.
 	});
-
+***
 ##MediaTypes: Information about media types
 
 _**getMediaTypes**_: Get a list of available media types.  
@@ -403,7 +403,7 @@ _**getMediaTypes**_: Get a list of available media types.
 		//Callback data code goes here.
 		//Returns available media types.
 	});
-	
+***
 ##Resources: Global Search
 
 _**getResources**_: Search for the supplied text globally across resource types.
@@ -418,7 +418,7 @@ _**getResources**_: Search for the supplied text globally across resource types.
 	so.getResources('PASS SEARCH STRING AS A PARAMETER HERE', function(data){
 		//Callback data code goes here.
 	}); 
-
+***
 ##Sources: Information about sources.
 
 _**getSources**_: Get a list of sources based on params.
@@ -453,7 +453,7 @@ _**getSourcesById**_: Get information about a specific source by Id.
 	so.getSourcesById(5, function(data){
 		//Callback data code goes here.
 	});
-	
+***
 ##Tags: Information about tags
 
 _**getTagTypes**_: Get a list of types.
@@ -547,11 +547,14 @@ _**getRelatedTagsById**_: Get information about related tags for a specific Tag.
 **Sort By**  
 id, name, language, type
 
-**Example**
+**Example:**
 
 	so.getRelatedTagsById(1, function(data){
 			console.log(data.results);
 	});
+***
+
+##Helper Functions
 
 _**addPagination**_: Returns pagination information as an object. To be added in SDK method callbacks.
 
@@ -572,7 +575,7 @@ _**addPagination**_: Returns pagination information as an object. To be added in
 **total**: Integer - // Total records count.
 **totalPages**: Integer - // Total pages based off of record count.
 
-**Example**
+**Example:**
 
 	var nextPage;
 	var currentPage;
@@ -599,7 +602,7 @@ _**getPage**_: Makes API call to get specfic page. Can be used in conjunction wi
 
 :Optional parameters:  **none**
 
-**Example**
+**Example:**
 
 	var nextPage;
 	var currentPage;
@@ -621,11 +624,11 @@ _**getPage**_: Makes API call to get specfic page. Can be used in conjunction wi
 
 ***
 
-##UNDERSTANDING SORTING
+##Understanding Sorting
 
 Some methods allow you to pass in a _**sort**_ parameter to sort returned records. The _**sort**_ param supports multi column sorting through the use of commas as delimiters, and a hyphen to denote descending order. i.e calling the _getMedia_ method and passing in a sort parameter of _id_, would return records in ascending order by _**"id"**_. If you made the same method call but instead passed _**"-id"**_ as a parameter you would return your records in descending order. 
 
-**Example**
+**Example:**
 
 _Ascending Order_  
 
@@ -644,5 +647,15 @@ _Descending Order_
         	mediaTypes: 'video',
         	sort: '-id' // This will return records in descending order
        });
+***
+##Date Format
+
+Date formats: Date input format is expected to be based on [RFC 3339](http:www.ietf.org/rfc/rfc3339.txt). Time is ignored.
+
+**Example:**
+
+    2013-11-18T18:43:01Z
+
+
         
 [Back To Top](#markdown-header-hhs-media-services-javascript-sdk) 

@@ -645,4 +645,4 @@ _Descending Order_
         	sort: '-id' // This will return records in descending order
        });
         
-[Back To Top](#home) 
+[Back To Top](#markdown-header-hhs-media-services-javascript-sdk) 

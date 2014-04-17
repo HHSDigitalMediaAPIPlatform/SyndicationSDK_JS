@@ -15,7 +15,7 @@ __Content__
 	* [Tags](#tags)
 * [*Understanding Sorting](#sorting)
 
-#<a name="intro"></a>INTRODUCTION
+#<a class="intro" href="#intro" name="intro">INTRODUCTION</a>
 
 To use the SDK you'll need to download it from here (_**PLACE HOLDER FOR DOWNLOAD URL**_) and atleast jQuery version 1.7. Once downloaded you can add the script to your project and then create a new **_Syndication_** object from the Syndication constructor.
 

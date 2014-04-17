@@ -4,18 +4,6 @@
 This is a JavaScript, jQuery dependent implementation of the HHS Media Server API. This SDK offers JavaScript developer’s familiarity and easy access to HHS Media Services data using AJAX to return the data in a JSON format for implementation into websites or web apps.
 
 #JavaScript SDK
-__Content__
-
-* [Introduction](#intro) 
-* [Methods](#methods)
-	* [Campaigns](#campaigns)
-	* [Languages](#languages)
-	* [Media](#media)
-	* [MediaTypes](#mediatypes)
-	* [Resources](#resource)
-	* [Sources](#source)
-	* [Tags](#tags)
-* [*Understanding Sorting](#sorting)
 
 #INTRODUCTION
 
@@ -93,7 +81,7 @@ id, name, startDate, mediaItems, description, endDate,source, contactEmail
 		offset: 5		
 	});
 
-##<a name="languages"></a>Languages: Information about languages
+##Languages: Information about languages
 
 _**getLanguages**_:  Get a list of languages based on params.
 
@@ -130,7 +118,7 @@ getLanguageById: Get information about a specific language by ID.
 		//Callback data code goes here.
 	});		
 
-##<a name="media"></a>Media: Information about media
+##Media: Information about media
 
 _**getMedia**_:  Get a list of media items based on params.  
 
@@ -402,7 +390,7 @@ _**getMediaYoutubeMetaDataById**_: Get the Youtube meta-data for a video item.
 		//Callback data code goes here.
 	});
 
-##<a name="mediatypes"></a>MediaTypes: Information about media types
+##MediaTypes: Information about media types
 
 _**getMediaTypes**_: Get a list of available media types.  
 :Required parameters:  **none**
@@ -416,7 +404,7 @@ _**getMediaTypes**_: Get a list of available media types.
 		//Returns available media types.
 	});
 	
-##<a name="resource"></a>Resources: Global Search
+##Resources: Global Search
 
 _**getResources**_: Search for the supplied text globally across resource types.
 
@@ -431,7 +419,7 @@ _**getResources**_: Search for the supplied text globally across resource types.
 		//Callback data code goes here.
 	}); 
 
-##<a name="source"></a>Sources: Information about sources.
+##Sources: Information about sources.
 
 _**getSources**_: Get a list of sources based on params.
 :Required parameters:  **none**
@@ -466,7 +454,7 @@ _**getSourcesById**_: Get information about a specific source by Id.
 		//Callback data code goes here.
 	});
 	
-##<a name="tags"></a>Tags: Information about tags
+##Tags: Information about tags
 
 _**getTagTypes**_: Get a list of types.
 
@@ -633,7 +621,7 @@ _**getPage**_: Makes API call to get specfic page. Can be used in conjunction wi
 
 ***
 
-##<a name="sorting"></a>UNDERSTANDING SORTING
+##UNDERSTANDING SORTING
 
 Some methods allow you to pass in a _**sort**_ parameter to sort returned records. The _**sort**_ param supports multi column sorting through the use of commas as delimiters, and a hyphen to denote descending order. i.e calling the _getMedia_ method and passing in a sort parameter of _id_, would return records in ascending order by _**"id"**_. If you made the same method call but instead passed _**"-id"**_ as a parameter you would return your records in descending order. 
 

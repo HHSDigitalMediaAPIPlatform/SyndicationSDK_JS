@@ -30,19 +30,19 @@
 
 			/* ================== CAMPAIGNS ================== */
 				/* 1 */
-		/*		Syndication.getCampaigns(function(data){
-					console.log(data);
+/*				Syndication.getCampaigns(function(data){
+					console.log(data.length);
 				},{
 					max: 5,
 					offset: 5
 				});	*/
 				/* 2 */
-		/*		Syndication.getCampaignsById(1, function(data){
+/*				Syndication.getCampaignsById(1, function(data){
 					console.log(data);
-				});	*/	
+				});*/		
 
 				/* 3 */
-		/*		Syndication.getMediaByCampaignId(1, function(data){
+/*				Syndication.getMediaByCampaignId(1, function(data){
 					console.log(data);
 				},{
 					max: 2,
@@ -64,26 +64,29 @@
 				//var pagination;
 			/* ================== MEDIA ================== */
 				/* 6 */
-				Syndication.getMedia(function(data){
+/*				Syndication.getMedia(function(data){
 					syndicatedContent = data;
 					//console.log("=================> getMedia");
-					console.log(syndicatedContent);
+					//console.log(syndicatedContent);
 					pagination = Syndication.addPagination();
 					currentPageNumber = pagination.pageNum;
 					totalPages = pagination.totalPages;
 					
-				}, {
+				},{
 				 
 				 offset: 5,
-				 max: 5
-
-				});
+				 max: 10,
+				 mediaTypes: 'Video'
+				});*/
 				
 				/* LATEST ADDITION */
 				/* 27 */
-		/*		Syndication.getMostPopularMedia(function(data){
+/*				Syndication.getMostPopularMedia(function(data){
 					console.log("=================> getMostPopularMedia");
 					console.log(data);
+
+					pagination = Syndication.addPagination();
+					console.log(pagination);
 				},{
 					max: 5,
 					offset: 5
@@ -120,7 +123,7 @@
 				});*/
 
 				/* 12 */
-		/*		var myPreview = Syndication.getMediaPreviewById(1, {
+/*				var myPreview = Syndication.getMediaPreviewById(1, {
 					imageFloat: 'left',
 					height: 480,
 					width: 650,
@@ -170,14 +173,14 @@
 
 				/* ================== RESOURCES ================== */
 				/* 19 */
-		/*		Syndication.getResources('tobacco', function(data){
+/*				Syndication.getResources('tobacco', function(data){
 					console.log("=================> getResources");
 					console.log(data);
 				});*/
 
 				/* ================== SOURCES ================== */
 				/* 20 */
-		/*		Syndication.getSources(function(data){
+/*				Syndication.getSources(function(data){
 					console.log(data);
 				},{
 					offset: 2,
@@ -215,7 +218,7 @@
 					console.log(data.results);
 				});*/
 
-		/*		Syndication.getPage('http://ctacdev.com:8090/Syndication/api/v2/resources/languages.json?callback=?', function(data){
+/*				Syndication.getPage('http://ctacdev.com:8090/Syndication/api/v2/resources/media.json?offset=10&max=10&sort=id&order=ASC&callback=?', function(data){
 					console.log(data);
 				});*/
 		</script>

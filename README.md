@@ -5,15 +5,31 @@ This is a JavaScript, jQuery dependent implementation of the HHS Media Server AP
 
 #JavaScript SDK
 
+##Prerequisites 
+To use the SDK you'll need to download it from here (_**PLACE HOLDER FOR DOWNLOAD URL**_) and at least [jQuery version 1.7](www.jquery.com).
+
 #INTRODUCTION
 
-To use the SDK you'll need to download it from here (_**PLACE HOLDER FOR DOWNLOAD URL**_) and at least jQuery version 1.7. Once downloaded you can add the script to your project and then create a new **_Syndication_** object from the Syndication constructor.
+Once downloaded you can add the script to your project  
+**Example:**
+
+	<script type="text/javascript" src="src/syndication-sdk.js"></script>
+
+and then create a new **_Syndication_** object from the Syndication constructor.
 
 **Example:**
 
 	var so = new Syndication();
 	
-This will instantiate the Syndication object for use in your project and give you access to the various methods for obtaining content.
+This will instantiate the Syndication object for use in your project and give you access to the various methods for obtaining content. You can also pass in a url to change where you pull your API calls from.
+
+**Example**  
+
+	var so = new Syndication('ENTER URL HERE');
+
+##Testing
+
+Included is a testing suite using the [Jasmine](http://jasmine.github.io) JavaSCript framework. It runs tests on available methods within the Syndication SDK using the SpecRunner.html file.  
 
 ***
 
@@ -586,7 +602,7 @@ _**addPagination**_: Returns pagination information as an object. To be added in
 			//Callback data code goes here.
 			var pagination = so.addPagination();
 			nextPage = pagination.nextUrl;
-			currenPage = pagination.pageNum;
+			currentPage = pagination.pageNum;
 			previousPage = pagination.previousUrl;
 	},{
 		max: 5,
@@ -654,7 +670,7 @@ Date formats: Date input format is expected to be based on [RFC 3339](http:www.i
 
 **Example:**
 
-    2013-11-18T18:43:01Z
+    2013-11-18T00:00:00Z
 
 
         
